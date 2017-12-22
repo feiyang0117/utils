@@ -34,3 +34,22 @@ exports.arrRound = (arr, callback) => {
     let newArr = arr.sort(this.fn);
     callback(newArr);
 };
+
+/** 其它函数封装并引用 promise **/
+exports.getUrl = (url) => {
+    return Promise((resolve, reject) => {
+        let XHR = new XMLHttpRequest();
+        XHR.open('get', url);
+        XHR.onreadystatechange = (rs) => {
+            if(rs.readyState == 4) return;
+            if(rs.readyState == 200) {
+                resolve(this.response);
+            } else {
+                reject(new Error(this.statusText));
+            }
+        }
+        XHR.responseType = "json";
+        XHR.setRequestHeader("Accept","application/json");
+        XHR.send(); 
+    })
+}
