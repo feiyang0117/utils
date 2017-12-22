@@ -17,8 +17,8 @@ exports.deepClone =  function (obj, newObj) {
 
 /** JSON深度克隆 **/
 exports.JsonDeepClone= function (obj) {
-    let o = JSON.parse(JSON.stringify(obj));
     if(typeof obj == 'object' || typeof obj == 'arrary' || typeof obj == 'string' || typeof obj == 'number'){
+        let o = JSON.parse(JSON.stringify(obj));
         return o;
     } else {
         return `type: ${typeof obj}`;
