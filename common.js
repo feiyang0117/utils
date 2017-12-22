@@ -26,11 +26,11 @@ exports.JsonDeepClone= (obj) => {
 };
 
 /** 关于数组随机排序 **/
-exports.arrRandom = (arr, callback) => {
+exports.arrRound = (arr, callback) => {
     if(arr.constructor !== Array) return;
     this.fn = (...a) => {
-        return Math.random() > 0.5 ? -1 : 1;
+        return Math.random() > 0.5 ? 1 : -1;
     };
-    let newArr  = arr.sort(this.fn);
+    let newArr = arr.sort(this.fn);
     callback(newArr);
 };
