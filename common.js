@@ -68,5 +68,9 @@ Object.defineProperty(Object, 'is', {
         }
         /** 针对 NaN **/
         return x !== x && y !== y;
-    }
+    },
+    configurable: true,
+    enumerable: false,
+    writable: true
+
 })
