@@ -26,6 +26,7 @@ exports.JsonDeepClone= (obj) => {
 };
 
 /** 关于数组随机排序 **/
+/** eg: arrRound(arr,fn)**/
 exports.arrRound = (arr, callback) => {
     if(arr.constructor !== Array) return;
     this.fn = (...a) => {
@@ -36,10 +37,11 @@ exports.arrRound = (arr, callback) => {
 };
 
 /** 其它函数封装并引用 promise **/
-exports.getUrl = (url) => {
+/** eg:getUrl(url, data).then().catch();**/
+exports.getUrl = (url, data) => {
     return Promise((resolve, reject) => {
         let XHR = new XMLHttpRequest();
-        XHR.open('get', url);
+        XHR.open(data.type || 'get', url);
         XHR.onreadystatechange = (rs) => {
             if(rs.readyState == 4) return;
             if(rs.readyState == 200) {
@@ -48,7 +50,7 @@ exports.getUrl = (url) => {
                 reject(new Error(this.statusText));
             }
         }
-        XHR.responseType = "json";
+        XHR.responseType = data.responseType || "json";
         XHR.setRequestHeader("Accept","application/json");
         XHR.send(); 
     })
