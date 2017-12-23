@@ -55,3 +55,18 @@ exports.getUrl = (url, data) => {
         XHR.send(); 
     })
 }
+
+/** Object.is   es5
++0 === -0 //true 对比  Object.is(+0, -0) // false
+NaN === NaN // false 对比  Object.is(NaN, NaN) // true
+ **/
+Object.defineProperty(Object, 'is', {
+    value: function(x, y) {
+        // 针对es5 +0 === -0
+        if(x===y){
+            return x !== 0 || 1/x !==1/y;
+        }
+        /** 针对 NaN **/
+        return x !== x && y !== y;
+    }
+})
