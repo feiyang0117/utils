@@ -64,7 +64,7 @@ Object.defineProperty(Object, 'is', {
     value: function(x, y) {
         // 针对es5 +0 === -0
         if(x===y){
-            return x !== 0 || 1/x !==1/y;
+            return x !== 0 || 1/x === 1/y;
         }
         /** 针对 NaN **/
         return x !== x && y !== y;
