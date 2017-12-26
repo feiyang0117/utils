@@ -25,6 +25,19 @@ exports.JsonDeepClone= (obj) => {
     }
 };
 
+/** create 兼容处理 **/
+exports.create = (obj) => {
+    if(Object.creates){
+        return Object.create(obj);
+    } else {
+        function Foo(){};
+        Foo.prototype = obj;
+        console.log(new Foo())
+        return new Foo();
+    }
+}
+
+
 /** 关于数组随机排序 **/
 /** eg: arrRound(arr,fn)**/
 exports.arrRound = (arr, callback) => {
@@ -74,3 +87,19 @@ Object.defineProperty(Object, 'is', {
     writable: true
 
 })
+
+// 删除数组中的某一项
+exports.remove = (arr, item) => {
+    if(arr.length>0){
+        let index  = arr.indexOf(item);
+        if(index>-1){
+            return arr.splice(index,1);
+        }
+    } 
+}
+
+// 检查对象中是否拥有某项属性
+exports.hasOwn = (obj, key) => {  
+    let hasOwnProperty = Object.prototype.hasOwnProperty;
+    return hasOwnProperty.call(obj, key);
+}
