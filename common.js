@@ -27,12 +27,11 @@ exports.JsonDeepClone= (obj) => {
 
 /** create 兼容处理 **/
 exports.create = (obj) => {
-    if(Object.creates){
+    if(Object.create){
         return Object.create(obj);
     } else {
         function Foo(){};
         Foo.prototype = obj;
-        console.log(new Foo())
         return new Foo();
     }
 }
