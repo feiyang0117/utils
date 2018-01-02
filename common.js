@@ -104,8 +104,8 @@ exports.hasOwn = (obj, key) => {
 }
 
 // bind写法
-Function.prototype.binds = function(obj) {
-    var me = this, 
+Function.prototype.bind = function(obj) {
+    var me = this,
     temp = function() { 
         return me.apply(obj, arguments); 
     }; 
