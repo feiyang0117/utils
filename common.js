@@ -9,7 +9,7 @@ exports.deepClone = (obj, newObj) => {
             newObj[i] = obj[i].constructor == Arrary ? [] : {}
             this.deepClone(obj[i], newObj[i]);
         } else {
-            newObj[i] = obj[i]
+            newObj[i] = obj[i];
         }
     }
     return newObj;
@@ -102,3 +102,12 @@ exports.hasOwn = (obj, key) => {
     let hasOwnProperty = Object.prototype.hasOwnProperty;
     return hasOwnProperty.call(obj, key);
 }
+
+// bind写法
+Function.prototype.binds = function(obj) {
+    var me = this, 
+    temp = function() { 
+        return me.apply(obj, arguments); 
+    }; 
+    return temp; 
+};
