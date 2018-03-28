@@ -111,3 +111,21 @@ Function.prototype.bind = function(obj) {
     }; 
     return temp; 
 };
+
+// Object属性合并
+exports.extend = function(to, _from) {
+    for(var key in _from){
+        to[key] = _from[key];
+    }
+    return to;
+}
+
+ // 不同的数组对象进行 merge
+ exports.toObject = function(arr) {
+    var res = {};
+    for(var i=0;i<arr.length;i++){
+        this.extend(res, arr[i])
+    }
+    return res;
+ }
+
