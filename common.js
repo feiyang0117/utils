@@ -128,4 +128,25 @@ exports.extend = function(to, _from) {
     }
     return res;
  }
-
+ 
+ //金钱格式化
+ exports.toFormatMoney = function(arg) {
+    if(typeof(arg) != 'number') return;
+    var arg1,arg2;
+    if(/^\d+(\.\d+)$/.test(arg)){
+        arg = arg.toString();
+        arg1 = arg.split(".")[0];
+        arg2 = arg.split(".")[1];
+    } else {
+        arg1 = arg;
+    }
+    var newArr = [];
+    var counter = 0;
+    var result = '';
+    for (var i = arg1.length - 1; i >= 0; i--) {
+        counter++;
+        result = arg1.charAt(i) + result;
+        if (!(counter % 3) && i != 0) { result = ',' + result; }
+    }
+    return result + '.'+ arg2;
+};
