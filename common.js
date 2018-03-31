@@ -132,7 +132,8 @@ exports.extend = function(to, _from) {
  //金钱格式化
  exports.toFormatMoney = function(arg) {
     if(typeof(arg) != 'number') return;
-    var arg1,arg2;
+    let arg1, arg2, newArr = [], counter = 0, result = '';
+
     if(/^\d+(\.\d+)$/.test(arg)){
         arg = arg.toString();
         arg1 = arg.split(".")[0];
@@ -140,10 +141,8 @@ exports.extend = function(to, _from) {
     } else {
         arg1 = arg;
     }
-    var newArr = [];
-    var counter = 0;
-    var result = '';
-    for (var i = arg1.length - 1; i >= 0; i--) {
+
+    for (let i = arg1.length - 1; i >= 0; i--) {
         counter++;
         result = arg1.charAt(i) + result;
         if (!(counter % 3) && i != 0) { result = ',' + result; }
